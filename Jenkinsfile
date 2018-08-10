@@ -6,5 +6,8 @@ pipeline {
         git(url: 'https://github.com/christercarlsson/jenkins-test.git', branch: 'master')
       }
     }
+    stage('Build') {
+      bat 'dotnet build'
+    }
   }
-}
+} 
