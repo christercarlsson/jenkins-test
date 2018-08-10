@@ -1,13 +1,5 @@
-pipeline {
-  agent any
-  stages {
-    stage('Git pull') {
-      steps {
-        git(url: 'https://github.com/christercarlsson/jenkins-test.git', branch: 'master')
-      }
-    }
-    stage('Build') {
-      bat 'dotnet build'
-    }
-  }
-} 
+node('git_src') {
+  git 'https://github.com/christercarlsson/jenkins-test.git'
+
+  bat 'dotnet build --project ./src/JenkinsTest.cproj'
+}
